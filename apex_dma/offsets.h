@@ -25,7 +25,7 @@
 #define OFFSET_AMMO 0x15d4 //[RecvTable.DT_WeaponX_LocalWeaponData].m_ammoInClip updated 2024/10/16
 #define OFF_RELOADING 0x15aa //[RecvTable.DT_WeaponX_LocalWeaponData].m_bInReload updated 2024/10/16
 
-#define OFFSET_BONES 0x0d88 + 0x48 //[RecvTable.DT_BaseAnimating].m_nForceBone + 0x48 updated 2024/10/16
+#define OFFSET_BONES 0xDA8 + 0x48 //[RecvTable.DT_BaseAnimating].m_nForceBone + 0x48 updated 2024/10/16
 #define OFFSET_TEAM 0x0338 //[RecvTable.DT_BaseEntity].m_iTeamNum updated 2024/10/16
 #define OFFSET_SHIELD 0x01a0 //[RecvTable.DT_BaseEntity].m_shieldHealth updated 2024/10/16
 #define OFFSET_MAXSHIELD 0x01a4 //[RecvTable.DT_BaseEntity].m_shieldHealthMax updated 2024/10/16
