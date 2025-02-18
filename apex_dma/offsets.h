@@ -15,14 +15,14 @@
 #define OFFSET_VISIBLE_TIME  0x19f0 //[Miscellaneous].CPlayer!lastVisibleTime updated 2024/10/16
 #define OFFSET_CROSSHAIR_LAST 0x19f8 //[Miscellaneous].CWeaponX!lastCrosshairTargetTime updated 2024/10/16
 #define OFFSET_STUDIOHDR 0xfd0 //[Miscellaneous].CBaseAnimating!m_pStudioHdr updated 2024/10/16
-#define OFFSET_BULLET_SCALE 0x19d8 + 0x04f4  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_gravity_scale updated 2024/10/16
-#define OFFSET_BULLET_SPEED 0x19d8 + 0x04ec  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_launch_speed updated 2024/10/16
+#define OFFSET_BULLET_SCALE 0x2768  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_gravity_scale updated 2024/10/16
+#define OFFSET_BULLET_SPEED 0x2770  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_launch_speed updated 2024/10/16
 
 #define OFFSET_WEAPON_ID 0x15c0 //[RecvTable.DT_WeaponX].m_weaponNameIndex updated 2024/10/16
 #define OFFSET_WEAPON_BITFIELD 0x1714 //[RecvTable.DT_WeaponX].m_modBitfieldFromPlayer updated 2024/10/16
 #define OFFSET_ZOOM_FOV 0x15e0 + 0x00b8 //[RecvTable.DT_WeaponX].m_playerData + m_curZoomFOV updated 2024/10/16
 #define OFFSET_OFF_WEAPON 0x19a4 //[DataMap.C_BaseCombatCharacter].m_latestNonOffhandWeapons updated 2024/10/16
-#define OFFSET_AMMO 0x15b0 //[RecvTable.DT_WeaponX_LocalWeaponData].m_ammoInClip updated 2024/10/16
+#define OFFSET_AMMO 0x15d4 //[RecvTable.DT_WeaponX_LocalWeaponData].m_ammoInClip updated 2024/10/16
 #define OFF_RELOADING 0x15aa //[RecvTable.DT_WeaponX_LocalWeaponData].m_bInReload updated 2024/10/16
 
 #define OFFSET_BONES 0x0d88 + 0x48 //[RecvTable.DT_BaseAnimating].m_nForceBone + 0x48 updated 2024/10/16
