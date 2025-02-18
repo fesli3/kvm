@@ -2241,7 +2241,6 @@ int main(int argc, char *argv[])
         run_tui_menu();
         return 0;
     }
-    bool proc_not_found = false;
 
     const char *ap_proc = "r5apex.exe";
     const char *ap_proc_dx12 = "r5apex_dx12.exe";
@@ -2279,24 +2278,15 @@ int main(int argc, char *argv[])
                 quit_tui_menu();
             }
 
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::seconds(2));
             printf("Searching for apex process...\n");
-	    proc_not_found = apex_mem.get_proc_status() == process_status::NOT_FOUND;
-	    if (proc_not_found){
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-		printf("Searching for apex process...\n");
-	     }
-            
+
             apex_mem.open_proc(ap_proc);
-            
             if (apex_mem.get_proc_status() == process_status::FOUND_READY)
             {
                 g_Base = apex_mem.get_proc_baseaddr();
-                if (proc_not_found)
-				{
-					printf("\nApex process found\n");
-					printf("Base: %lx\n", g_Base);
-				}
+                printf("\nApex process found\n");
+                printf("Base: %lx\n", g_Base);
 
                 global_thr = std::thread(UpdateGlobalVar);
                 aimbot_thr = std::thread(AimbotLoop);
