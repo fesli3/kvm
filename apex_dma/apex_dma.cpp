@@ -2308,7 +2308,7 @@ int main(int argc, char *argv[])
             apex_mem.check_proc();
 
             const auto g_settings = global_settings();
-            if (g_settings.debug_mode)
+            if (g_settings.no_overlay)
             {
                 if (terminal_t)
                 {
