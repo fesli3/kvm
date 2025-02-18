@@ -2280,13 +2280,12 @@ int main(int argc, char *argv[])
             }
 
             std::this_thread::sleep_for(std::chrono::seconds(1));
-			printf("Searching for apex process...\n");
-			proc_not_found = apex_mem.get_proc_status() == process_status::NOT_FOUND;
-			if (proc_not_found)
-			{
-				std::this_thread::sleep_for(std::chrono::seconds(1));
-				printf("Searching for apex process...\n");
-			}
+            printf("Searching for apex process...\n");
+	    proc_not_found = apex_mem.get_proc_status() == process_status::NOT_FOUND;
+	    if (proc_not_found){
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+		printf("Searching for apex process...\n");
+	     }
             
             apex_mem.open_proc(ap_proc);
             
