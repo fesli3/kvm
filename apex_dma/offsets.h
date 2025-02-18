@@ -1,5 +1,5 @@
 //Date 2024/10/16
-//GameVersion = v3.0.82.42
+//GameVersion = v3.0.2.14
 
 #define OFFSET_ENTITYLIST 0xa6f2a58 //[ConVars].gamepad_aim_assist_melee updated 2024/10/16 # [Miscellaneous].cl_entitylist
 #define OFFSET_LOCAL_ENT 0x216ffb8 //[Miscellaneous].LocalPlayer updated 2024/10/16
@@ -15,8 +15,8 @@
 #define OFFSET_VISIBLE_TIME  0x19f0 //[Miscellaneous].CPlayer!lastVisibleTime updated 2024/10/16
 #define OFFSET_CROSSHAIR_LAST 0x19f8 //[Miscellaneous].CWeaponX!lastCrosshairTargetTime updated 2024/10/16
 #define OFFSET_STUDIOHDR 0xfd0 //[Miscellaneous].CBaseAnimating!m_pStudioHdr updated 2024/10/16
-#define OFFSET_BULLET_SCALE 0x2768  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_gravity_scale updated 2024/10/16
-#define OFFSET_BULLET_SPEED 0x2770  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_launch_speed updated 2024/10/16
+#define OFFSET_BULLET_SCALE 0x2788  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_gravity_scale updated 2024/10/16
+#define OFFSET_BULLET_SPEED 0x2780  //[WeaponSettingsMeta].base + [WeaponSettings].projectile_launch_speed updated 2024/10/16
 
 #define OFFSET_WEAPON_ID 0x15c0 //[RecvTable.DT_WeaponX].m_weaponNameIndex updated 2024/10/16
 #define OFFSET_WEAPON_BITFIELD 0x1714 //[RecvTable.DT_WeaponX].m_modBitfieldFromPlayer updated 2024/10/16
@@ -57,14 +57,14 @@
 #define OFFSET_WALLRUNSTART 0x3674 //[DataMap.C_Player].m_wallRunStartTime updated 2024/10/16
 #define OFFSET_WALLRUNCLEAR 0x3678 //[DataMap.C_Player].m_wallRunClearTime float updated 2024/10/16
 #define OFFSET_IN_DUCKSTATE 0x2a60 //[DataMap.C_Player].m_duckState updated 2024/10/16
-#define OFFSET_AIMPUNCH 0x2438 //[DataMap.C_Player].m_currentFrameLocalPlayer.m_vecPunchWeapon_Angle updated 2024/10/16
-#define OFFSET_YAW 0x223c - 0x8 //[DataMap.C_Player].m_currentFramePlayer.m_ammoPoolCount - 0x8 updated 2024/10/16
-#define OFFSET_TIME_BASE 0x2088 //[DataMap.C_Player].m_currentFramePlayer.timeBase updated 2024/10/16
+#define OFFSET_AIMPUNCH 0x2498 //[DataMap.C_Player].m_currentFrameLocalPlayer.m_vecPunchWeapon_Angle updated 2024/10/16
+#define OFFSET_YAW 0x229C - 0x8 //[DataMap.C_Player].m_currentFramePlayer.m_ammoPoolCount - 0x8 updated 2024/10/16
+#define OFFSET_TIME_BASE 0x20E8 //[DataMap.C_Player].m_currentFramePlayer.timeBase updated 2024/10/16
 
 #define OFFSET_INPUT_SYSTEM 0x1993600 //[Miscellaneous].InputSystem updated 2024/10/16 
-#define OFFSET_IN_ATTACK 0x07452068 //[Buttons].in_attack updated 2024/10/16
+#define OFFSET_IN_ATTACK 0x7452068 //[Buttons].in_attack updated 2024/10/16
 #define OFFSET_IN_TOGGLE_DUCK 0x07452088 //[Buttons].in_toggle_duck updated 2024/10/16
-#define OFFSET_IN_ZOOM 0x074521e0 //[Buttons].in_zoom updated 2024/10/16
+#define OFFSET_IN_ZOOM 0x74521E0 //[Buttons].in_zoom updated 2024/10/16
 #define OFFSET_IN_FORWARD 0x076e9af0 //[Buttons].in_forward updated 2024/10/16
 #define OFFSET_IN_JUMP 0x076e9cb8 //[Buttons].in_jump updated 2024/10/16
 #define OFFSET_IN_DUCK 0x076e9db0 //[Buttons].in_duck updated 2024/10/16
