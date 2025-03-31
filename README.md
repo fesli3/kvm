@@ -110,7 +110,7 @@ Look forward to your testing and feedback.
 1. Make sure you have properly formatted offsets.h and offsets.ini.
 2. Run the python script like this.
     ```shell
-    py update.py offsets.h offsets.ini
+    py updater.py offsets.h offsets.ini
     ```
 
 ## Getting Started
