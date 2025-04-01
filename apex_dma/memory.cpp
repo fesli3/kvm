@@ -202,12 +202,13 @@ void append_valid_dtb(size_t dtb)
   file << dtb << std::endl;
 }
 
+std::vector<uint64_t> validDtbCache; // Cache for valid DTBs
+std::mutex dtbCacheMutex;            // Mutex to protect DTB cache
+
 int Memory::open_proc(const char *name)
 {
   int ret;
   const char *target_proc = name;
-  bool exist_dtb_file = check_exist();
-  std::set<size_t> valid_dtbs = load_valid_dtbs();
 
   if (!(ret = os.process_by_name(CSliceRef<uint8_t>(target_proc),
                                  &proc.hProcess)))
@@ -225,45 +226,66 @@ int Memory::open_proc(const char *name)
     proc.baseaddr = *base_section_value;
 
     bool found_valid_dtb = false;
-    if (exist_dtb_file)
+
+    // Step 1: Check cached DTBs
     {
-      for (size_t dtb : valid_dtbs)
+      std::lock_guard<std::mutex> lock(dtbCacheMutex);
+      for (uint64_t cached_dtb : validDtbCache)
       {
-        proc.hProcess.set_dtb(dtb, Address_INVALID);
+        proc.hProcess.set_dtb(cached_dtb, Address_INVALID);
         short header;
-        Read<short>(*base_section_value, header);
-        if (header == MZ_HEADER)
+        if (Read<short>(*base_section_value, header) && header == MZ_HEADER)
         {
-          printf("Using valid DTB from file: %zu\n", dtb);
+          printf("Using cached DTB: %lx\n", cached_dtb);
           found_valid_dtb = true;
           break;
         }
       }
     }
+
+    // Step 2: Perform brute-force search if no valid cached DTB is found
     if (!found_valid_dtb)
     {
-      printf("Searching for a new DTB...\n");
-      for (size_t dtb = 0; dtb < SIZE_MAX; dtb += 4096)
+      printf("Performing brute-force search for DTB...\n");
+      for (uint64_t dtb = 0; dtb < SIZE_MAX; dtb += 0x1000)
       {
         proc.hProcess.set_dtb(dtb, Address_INVALID);
         short header;
-        Read<short>(*base_section_value, header);
-        if (header == MZ_HEADER)
+        if (Read<short>(*base_section_value, header) && header == MZ_HEADER)
         {
-          printf("Found new DTB: %zu\n", dtb);
-          append_valid_dtb(dtb); // 追加新的 DTB 到文件中
+          printf("Found new DTB: %lx\n", dtb);
+          {
+            std::lock_guard<std::mutex> lock(dtbCacheMutex);
+            validDtbCache.push_back(dtb); // Cache the new DTB
+          }
           found_valid_dtb = true;
           break;
         }
       }
     }
-    if (!found_valid_dtb)
+
+    // Step 3: Validate the final DTB by reading in-game data
+    if (found_valid_dtb)
+    {
+      short header;
+      if (Read<short>(*base_section_value, header) && header == MZ_HEADER)
+      {
+        printf("Validated DTB\n");
+        status = process_status::FOUND_READY;
+      }
+      else
+      {
+        printf("Failed to validate DTB\n");
+        status = process_status::FOUND_NO_ACCESS;
+        return ret;
+      }
+    }
+    else
     {
       printf("Failed to find valid DTB for process %s\n", name);
       status = process_status::FOUND_NO_ACCESS;
       return ret;
     }
-    status = process_status::FOUND_READY;
   }
   else
   {
